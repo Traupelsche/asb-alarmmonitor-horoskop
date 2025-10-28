@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Feedback</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="feedback.css">
+</head>
+<body>
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <h1 class="h3 mb-3">Feedback</h1>
+      <p class="text-secondary mb-4">Wir freuen uns über kurzes Feedback zum Horoskop. Nachricht eingeben und senden – es öffnet sich dein E‑Mail‑Programm.</p>
+
+      <form id="feedback-form" class="vstack gap-3">
+        <div>
+          <label for="name" class="form-label">Dein Name (optional)</label>
+          <input id="name" class="form-control" autocomplete="name" />
+        </div>
+        <div>
+          <label for="message" class="form-label">Nachricht</label>
+          <textarea id="message" class="form-control" rows="5" required placeholder="Dein Feedback…"></textarea>
+        </div>
+        <div class="d-flex gap-2">
+          <button type="submit" class="btn btn-primary">Senden</button>
+        </div>
+      </form>
+
+      <hr class="my-4" />
+      <div>
+        <div class="fw-semibold mb-1">Direkter Link</div>
+        <a id="mailto-link" class="link-primary" href="#">Mail in neuem Fenster öffnen</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const form = document.getElementById('feedback-form');
+      const mailto = document.getElementById('mailto-link');
+
+      function buildMailto() {
+        const to = 'feedback@bltraupel.com'; // Passe diese Adresse bei Bedarf an
+        const name = document.getElementById('name').value.trim();
+        const message = document.getElementById('message').value.trim();
+        const subject = 'Feedback: Alarm Monitor Horoskop';
+        const page = location.origin + location.pathname.replace('feedback.html', 'index.html');
+
+        const fullBody = [
+          message || '(kein Text)',
+          '',
+          '—',
+          'Meta:',
+          `Seite: ${page}`,
+          name ? `Name: ${name}` : null,
+          `Zeit: ${new Date().toLocaleString()}`
+        ].filter(Boolean).join('\n');
+
+        return `mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(fullBody)}`;
+      }
+
+      function updateLink() {
+        mailto.href = buildMailto();
+      }
+
+      form.addEventListener('input', updateLink);
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        updateLink();
+        // Öffne Mailprogramm
+        window.location.href = mailto.href;
+      });
+
+      // Initial setzen
+      updateLink();
+    })();
+  </script>
+</body>
+</html>
