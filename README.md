@@ -57,7 +57,7 @@ Da `fetch` genutzt wird, sollte die Seite über einen lokalen Webserver geöffne
 
 ## Feedback-Konfiguration
 - In `feedback.html` wird ein `mailto:` Link erzeugt
-- Passe die Zieladresse bei Bedarf in `feedback.html` an (Variable `to`, aktuell `feedback@bltraupel.com`)
+- Passe die Zieladresse bei Bedarf in `feedback.html` an (Variable `to`, aktuell `feedback@example.com`)
 
 ## Anpassungen
 - Dark-Mode-Farben in `index.css` und `feedback.css`
