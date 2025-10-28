@@ -66,4 +66,4 @@ Da `fetch` genutzt wird, sollte die Seite über einen lokalen Webserver geöffne
 - Layout: Bootstrap-Grid in `index.html`
 
 ## Lizenz
-Füge bei Bedarf eine LICENSE-Datei hinzu (z. B. MIT). Teile mir mit, welche Lizenz du bevorzugst, dann ergänze ich sie.
+MIT License – siehe [LICENSE](./LICENSE).
