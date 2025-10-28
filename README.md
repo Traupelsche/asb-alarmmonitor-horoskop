@@ -2,6 +2,10 @@
 
 Eine kleine, statische Web-App, die täglich um 05:00 Uhr lokal ein neues, zufälliges Horoskop aus einer CSV-Datei anzeigt. Zusätzlich wird neben dem Horoskop ein QR‑Code angezeigt, der zu einer Feedback-Seite führt.
 
+Einsatzkontext: Diese Seite ist für die Anzeige auf einem Alarmmonitor einer Rettungswache gedacht und wird in einer DIVERA 24/7 Umgebung genutzt.
+
+Hinweis: Dieses Projekt ist ein Spaßprojekt, um Kolleg:innen mit etwas Humor durch den oft fordernden Dienstalltag zu begleiten.
+
 ## Features
 - Tägliche, deterministische Zufallsauswahl aus `horoskop.csv`
 - Tageswechsel um 05:00 Uhr (lokale Zeit); automatischer Reload genau zu diesem Zeitpunkt
@@ -67,3 +71,15 @@ Da `fetch` genutzt wird, sollte die Seite über einen lokalen Webserver geöffne
 
 ## Lizenz
 MIT License – siehe [LICENSE](./LICENSE).
+
+## Hinweis / Disclaimer
+- Dieses Projekt dient ausschließlich der Unterhaltung. Es stellt keine medizinische Beratung dar und ist nicht für den klinischen Einsatz geeignet.
+- Inhalte können ungenau, satirisch oder unvollständig sein.
+- Keine Verbindung zu DIVERA 24/7: Dieses Projekt steht in keinem Zusammenhang mit, wird nicht unterstützt, gesponsert oder autorisiert von DIVERA 24/7 oder deren Betreiber:innen.
+- Alle genannten Namen und Marken sind Eigentum der jeweiligen Rechteinhaber:innen.
+
+English:
+- This project is for entertainment purposes only. It does not constitute medical advice and is not intended for clinical use.
+- Content may be inaccurate, satirical, or incomplete.
+- No affiliation with DIVERA 24/7: This project is not affiliated with, endorsed by, sponsored by, or authorized by DIVERA 24/7 or its operators.
+- All product names, logos, and brands are property of their respective owners.
