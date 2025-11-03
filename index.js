@@ -82,60 +82,6 @@ function scheduleDailyReload(cutoffHourLocal = 5) {
   }
 }
 
-// --- Geolocation + Reverse-Geocoding (Nominatim) + IP fallback ---
-async function reverseGeocode(lat, lon) {
-  try {
-    const url = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lon}&zoom=10&addressdetails=1&accept-language=de`;
-    const res = await fetch(url);
-    if (!res.ok) throw new Error("Reverse geocode failed");
-    const data = await res.json();
-    const a = data.address || {};
-    return a.city || a.town || a.village || a.municipality || a.county || a.state || null;
-  } catch (e) {
-    return null;
-  }
-}
-
-async function ipFallback() {
-  try {
-    // Use an IP-based geolocation service as fallback
-    const res = await fetch("https://ipapi.co/json/");
-    if (!res.ok) throw new Error("IP fallback failed");
-    const j = await res.json();
-    return j.city || j.region || j.country_name || null;
-  } catch (e) {
-    return null;
-  }
-}
-
-function updateCityHeading(city) {
-  const h = document.getElementById("city") || document.querySelector("h1");
-  if (!h) return;
-  const base = "Willkommen auf der Rettungswache";
-  if (city) h.textContent = `${base} ${city}`;
-  else h.textContent = base;
-}
-
-function detectCityAndDisplay() {
-  if (navigator.geolocation) {
-    const success = async (pos) => {
-      const lat = pos.coords.latitude;
-      const lon = pos.coords.longitude;
-      let city = await reverseGeocode(lat, lon);
-      if (!city) city = await ipFallback();
-      updateCityHeading(city);
-    };
-    const error = async () => {
-      const city = await ipFallback();
-      updateCityHeading(city);
-    };
-    // try to get a reasonably fresh position but don't block forever
-    navigator.geolocation.getCurrentPosition(success, error, { timeout: 10000, maximumAge: 600000 });
-  } else {
-    ipFallback().then(updateCityHeading);
-  }
-}
-
 function renderHoroscope(itemOrMessage) {
   const el = document.getElementById("horoskop-content");
   if (!el) return;
@@ -162,13 +108,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
   // Auto-reload at the next cutoff (05:00 local time)
   scheduleDailyReload(5);
-
-  // Detect city and update H1
-  try {
-    detectCityAndDisplay();
-  } catch (_) {
-    // ignore errors from geolocation
-  }
 
   // Set QR code and link to feedback page
   try {

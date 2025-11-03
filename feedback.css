@@ -1,4 +1,4 @@
-:root { color-scheme: light dark; }
+:root { color-scheme: dark; }
     body {
       min-height: 100vh;
       display: flex;
@@ -6,13 +6,19 @@
       justify-content: center;
       margin: 0;
       padding: 24px;
-      background: #f5f5f5;
-      color: #111;
+      background: #0d1117;
+      color: #e6edf3;
     }
     .card {
       max-width: 720px;
       width: 100%;
+      background: #001E4B;
+      color: #e6edf3;
+      border: 1px solid rgba(230, 237, 243, 0.15);
     }
-    @media (prefers-color-scheme: dark) {
-      body { background: #0d1117; color: #e6edf3; }
+    .text-secondary {
+      color: rgba(230, 237, 243, 0.7) !important;
+    }
+    .link-primary {
+      color: #58a6ff !important;
     }
