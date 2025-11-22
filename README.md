@@ -1,4 +1,4 @@
-# Alarm Monitor Horoskop
+# AlarmMonitor Horoskop
 
 Eine kleine, statische Web-App, die täglich um 05:00 Uhr lokal ein neues, zufälliges Horoskop aus einer CSV-Datei anzeigt. Zusätzlich wird neben dem Horoskop ein QR‑Code angezeigt, der zu einer Feedback-Seite führt.
 
